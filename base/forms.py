@@ -1,13 +1,14 @@
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
-from .models import Room, User
+from django.contrib.auth import get_user_model  # ✅ Use get_user_model()
+from .models import Room
 
+User = get_user_model()  # ✅ Correct way to reference custom user model
 
 class MyUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['name', 'username', 'email', 'password1', 'password2']
-
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
 class RoomForm(ModelForm):
     class Meta:
@@ -19,4 +20,4 @@ class RoomForm(ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['avatar', 'name', 'username', 'email', 'bio']
+        fields = ['first_name', 'last_name', 'username', 'email']
