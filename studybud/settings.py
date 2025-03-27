@@ -126,22 +126,14 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+# Static files
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Make sure collectstatic puts files here
 
-# Static files collection location for production
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
+# Media files
 MEDIA_URL = '/images/'
-
-# Media files location
-MEDIA_ROOT = BASE_DIR / 'static/images'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
+MEDIA_ROOT = BASE_DIR / 'static/images'  # Store media files in this directory
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
