@@ -1,18 +1,29 @@
-version: '3'
+version: '3.8'
 
 services:
   web:
     build: .
+    container_name: my_django_app
     ports:
       - "8000:8000"
-    volumes:
-      - .:/app
-    depends_on:
-      - db
-
-  db:
-    image: postgres:13
     environment:
-      POSTGRES_DB: mydatabase
+      - DB_HOST=my_postgres
+      - DB_PORT=5432
+      - DB_NAME=studybud
+      - DB_USER=myuser
+      - DB_PASSWORD=mypassword
+    depends_on:
+      - my_postgres
+
+  my_postgres:
+    image: postgres:latest
+    container_name: my_postgres
+    environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: studybud
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
