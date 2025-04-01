@@ -1,29 +1,34 @@
 version: '3.8'
 
 services:
-  web:
-    build: .
-    container_name: my_django_app
-    ports:
-      - "8000:8000"
-    environment:
-      - DB_HOST=my_postgres
-      - DB_PORT=5432
-      - DB_NAME=studybud
-      - DB_USER=myuser
-      - DB_PASSWORD=mypassword
-    depends_on:
-      - my_postgres
-
-  my_postgres:
+  db:
     image: postgres:latest
     container_name: my_postgres
+    restart: always
     environment:
+      POSTGRES_DB: mydatabase
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: studybud
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data  # Persistent storage
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    container_name: django_app
+    depends_on:
+      - db
+    environment:
+      DATABASE_NAME: mydatabase
+      DATABASE_USER: myuser
+      DATABASE_PASSWORD: mypassword
+      DATABASE_HOST: db  # Container name of the database
+      DATABASE_PORT: 5432
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app  # Mount the project directory
 
 volumes:
-  pg_data:
+  postgres_data:  # Define named volume
