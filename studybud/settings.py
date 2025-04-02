@@ -74,11 +74,11 @@ WSGI_APPLICATION = 'studybud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'db'),
-        'USER': os.getenv('DB_USER', 'myuser'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'password'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),  # Default to localhost if not running in Docker
-        'PORT': os.getenv('DB_PORT', '5432'),
+        'NAME': 'db',
+        'USER': 'myuser',
+        'PASSWORD': 'password',
+        'HOST': '*',  # Use 'db' if PostgreSQL is in Docker
+        'PORT': '5432',
     }
 }
 
