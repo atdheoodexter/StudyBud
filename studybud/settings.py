@@ -14,7 +14,6 @@ ALLOWED_HOSTS = ['localhost', '172.17.0.2']
 # Application definition
 
 INSTALLED_APPS = [
-    'studybud'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
