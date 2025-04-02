@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'studybud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db',  # PostgreSQL database name
-        'USER': 'myuser',  # PostgreSQL username
-        'PASSWORD': 'password',  # PostgreSQL password
-        'HOST': 'db',  # This should be the name of the service in Docker Compose
-        'PORT': '5432',  # PostgreSQL port
+        'NAME': 'db',
+        'USER': 'myuser',
+        'PASSWORD': 'password',
+        'HOST': 'db',  # Make sure this matches your Docker service name!
+        'PORT': '5432',
     }
 }
 

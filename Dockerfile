@@ -1,18 +1,20 @@
 # Use an official Python runtime as a parent image
 FROM python:3.9
 
+# Install PostgreSQL client & build dependencies
+RUN apt-get update && apt-get install -y \
+    libpq-dev gcc \
+    && rm -rf /var/lib/apt/lists/*
+
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy the project files into the container
 COPY . .
 
-# Install dependencies
+# Upgrade pip and install dependencies
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install -r requirements.txt
-
-# Collect static files
-RUN python manage.py collectstatic --noinput
 
 # Expose port 8000
 EXPOSE 8000
