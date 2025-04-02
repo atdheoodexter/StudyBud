@@ -77,7 +77,7 @@ DATABASES = {
         'NAME': 'db',
         'USER': 'myuser',
         'PASSWORD': 'password',
-        'HOST': '*',  # Use 'db' if PostgreSQL is in Docker
+        'HOST': 'my-postgres',  # Use 'db' if PostgreSQL is in Docker
         'PORT': '5432',
     }
 }
