@@ -92,7 +92,7 @@ DATABASES = {
         'NAME': 'db',
         'USER': 'myuser',
         'PASSWORD': 'password',
-        'HOST': 'db',  # Make sure this matches your Docker service name!
+        'HOST': 'my-postgres',  # Must match the PostgreSQL container name
         'PORT': '5432',
     }
 }
